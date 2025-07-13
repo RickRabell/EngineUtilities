@@ -16,10 +16,16 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{f79e8bee-612a-4a94-8653-f5fdaf883c94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vectors">
+      <UniqueIdentifier>{8785ec73-9de5-4fe4-97bf-65d59cd9f9b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utilities\EngineMath.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Vectors\Vector2.h">
+      <Filter>Vectors</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
