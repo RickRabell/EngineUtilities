@@ -1,3 +1,5 @@
+#include "../Utilities/EngineMath.h"
+
 namespace EngineUtilities {
 	class Vector2 {
 	public:
@@ -241,7 +243,7 @@ namespace EngineUtilities {
 			* @return Reference to the normalized vector.
 		*/
 		Vector2&
-		normalize(Vector2& other) {
+		normalize(Vector2& other) const {
 			float len = other.length(other);
 			other.m_x /= len;
 			other.m_y /= len;

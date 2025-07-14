@@ -20,12 +20,12 @@ namespace EngineUtilities {
     /**
       * @brief The scalar (w) and vector (x, y, z) components of the quaternion.
     */
-    float w, x, y, z;
+    float m_w, m_x, m_y, m_z;
 
     /**
       * @brief Default constructor. Initializes to the identity quaternion (no rotation).
     */
-    Quaternion() : w(1.0f), x(0.0f), y(0.0f), z(0.0f) {}
+    Quaternion() : m_w(1.0f), m_x(0.0f), m_y(0.0f), m_z(0.0f) {}
 
     /**
       * @brief Constructor with all 4 components.
@@ -34,7 +34,7 @@ namespace EngineUtilities {
       * @param y_ The y component of the vector part.
       * @param z_ The z component of the vector part.
     */
-    Quaternion(float w_, float x_, float y_, float z_) : w(w_), x(x_), y(y_), z(z_) {}
+    Quaternion(float w_, float x_, float y_, float z_) : m_w(w_), m_x(x_), m_y(y_), m_z(z_) {}
 
     /**
       * @brief Returns the identity quaternion.
@@ -70,7 +70,7 @@ namespace EngineUtilities {
     */
     float 
     LengthSquared() const {
-      return w * w + x * x + y * y + z * z;
+      return m_w * m_w + m_x * m_x + m_y * m_y + m_z * m_z;
     }
 
     /**
@@ -90,10 +90,10 @@ namespace EngineUtilities {
       float len = Length();
       if (EngineMath::absf(len) > EngineMath::epsilon) {
         float invLen = 1.0f / len;
-        w *= invLen;
-        x *= invLen;
-        y *= invLen;
-        z *= invLen;
+        m_w *= invLen;
+        m_x *= invLen;
+        m_y *= invLen;
+        m_z *= invLen;
       }
     }
 
@@ -115,7 +115,7 @@ namespace EngineUtilities {
     */
     Quaternion 
     Conjugate() const {
-      return Quaternion(w, -x, -y, -z);
+      return Quaternion(m_w, -m_x, -m_y, -m_z);
     }
 
     /**
@@ -140,15 +140,45 @@ namespace EngineUtilities {
     Matrix4x4 
     ToMatrix() const {
       Quaternion q = Normalized();
-      float xx = q.x * q.x, yy = q.y * q.y, zz = q.z * q.z;
-      float xy = q.x * q.y, xz = q.x * q.z, yz = q.y * q.z;
-      float wx = q.w * q.x, wy = q.w * q.y, wz = q.w * q.z;
+      float xx = q.m_x * q.m_x, yy = q.m_y * q.m_y, zz = q.m_z * q.m_z;
+      float xy = q.m_x * q.m_y, xz = q.m_x * q.m_z, yz = q.m_y * q.m_z;
+      float wx = q.m_w * q.m_x, wy = q.m_w * q.m_y, wz = q.m_w * q.m_z;
 
       return Matrix4x4(
         1 - 2 * (yy + zz), 2 * (xy - wz), 2 * (xz + wy), 0,
         2 * (xy + wz), 1 - 2 * (xx + zz), 2 * (yz - wx), 0,
         2 * (xz - wy), 2 * (yz + wx), 1 - 2 * (xx + yy), 0,
         0, 0, 0, 1
+      );
+    }
+
+    /**
+      * @brief Adds two quaternions component-wise.
+      * @param other The quaternion to add.
+      * @return The resulting quaternion.
+    */
+    Quaternion 
+    operator+(const Quaternion& other) const {
+      return Quaternion(
+        m_w + other.m_w,
+        m_x + other.m_x,
+        m_y + other.m_y,
+        m_z + other.m_z
+      );
+    }
+
+    /**
+      * @brief Substracts two quaternions component-wise.
+      * @param other The quaternion to substract.
+      * @return The resulting quaternion.
+    */
+    Quaternion
+      operator-(const Quaternion& other) const {
+      return Quaternion(
+        m_w - other.m_w,
+        m_x - other.m_x,
+        m_y - other.m_y,
+        m_z - other.m_z
       );
     }
 
@@ -160,10 +190,10 @@ namespace EngineUtilities {
     Quaternion 
     operator*(const Quaternion& other) const {
       return Quaternion(
-        w * other.w - x * other.x - y * other.y - z * other.z,
-        w * other.x + x * other.w + y * other.z - z * other.y,
-        w * other.y - x * other.z + y * other.w + z * other.x,
-        w * other.z + x * other.y - y * other.x + z * other.w
+        m_w * other.m_w - m_x * other.m_x - m_y * other.m_y - m_z * other.m_z,
+        m_w * other.m_x + m_x * other.m_w + m_y * other.m_z - m_z * other.m_y,
+        m_w * other.m_y - m_x * other.m_z + m_y * other.m_w + m_z * other.m_x,
+        m_w * other.m_z + m_x * other.m_y - m_y * other.m_x + m_z * other.m_w
       );
     }
 
@@ -177,7 +207,7 @@ namespace EngineUtilities {
       Quaternion p(0, v.m_x, v.m_y, v.m_z);
       Quaternion result = (*this) * p * this->Inverse();
       
-      return Vector3(result.x, result.y, result.z);
+      return Vector3(result.m_x, result.m_y, result.m_z);
     }
 
     /**
@@ -187,7 +217,7 @@ namespace EngineUtilities {
     */
     Quaternion 
     operator*(float scalar) const {
-      return Quaternion(w * scalar, x * scalar, y * scalar, z * scalar);
+      return Quaternion(m_w * scalar, m_x * scalar, m_y * scalar, m_z * scalar);
     }
 
   };

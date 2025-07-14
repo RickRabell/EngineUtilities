@@ -19,6 +19,12 @@
     <Filter Include="Vectors">
       <UniqueIdentifier>{8785ec73-9de5-4fe4-97bf-65d59cd9f9b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Matrix">
+      <UniqueIdentifier>{8ce3b7de-23cc-49bb-9f1f-d2c8b3c6c232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quaternion">
+      <UniqueIdentifier>{976a7149-77d8-48db-8268-1b088b17db89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utilities\EngineMath.h">
@@ -26,6 +32,24 @@
     </ClInclude>
     <ClInclude Include="include\Vectors\Vector2.h">
       <Filter>Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Vectors\Vector3.h">
+      <Filter>Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Vectors\Vector4.h">
+      <Filter>Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Matrix\Matrix2x2.h">
+      <Filter>Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Matrix\Matrix3x3.h">
+      <Filter>Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Matrix\Matrix4x4.h">
+      <Filter>Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Quaternion\Quaternion.h">
+      <Filter>Quaternion</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

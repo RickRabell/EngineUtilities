@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Vectors/Vector2.h"
+#include "../Vectors/Vector2.h" // Ensure Vector2 is included
 #include "../Utilities/EngineMath.h"
 
 /*!

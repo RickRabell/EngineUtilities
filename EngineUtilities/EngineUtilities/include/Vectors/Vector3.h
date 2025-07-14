@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "../Utilities/EngineMath.h"
 
 namespace EngineUtilities {
@@ -244,6 +243,22 @@ namespace EngineUtilities {
         a.m_y * b.m_z - a.m_z * b.m_y,
         a.m_z * b.m_x - a.m_x * b.m_z,
         a.m_x * b.m_y - a.m_y * b.m_x
+      );
+    }
+
+    /**
+      *  @brief Calculates the cross product from three float components.
+      *  @param x X component of the second vector.
+      *  @param y Y component of the second vector.
+      *  @param z Z component of the second vector.
+      *  @return Cross product vector.
+    */
+    Vector3 
+    crossProduct(float x, float y, float z) const {
+      return Vector3(
+        m_y * z - m_z * y,
+        m_z * x - m_x * z,
+        m_x * y - m_y * x
       );
     }
 
