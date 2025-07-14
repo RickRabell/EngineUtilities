@@ -28,6 +28,9 @@
     <ClInclude Include="include\Vectors\Vector3.h" />
     <ClInclude Include="include\Vectors\Vector4.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
